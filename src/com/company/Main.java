@@ -1,168 +1,77 @@
 package com.company;
 
-import com.company.CreationalDesignPatterns.AbstractFactory.AbstractFactory;
-import com.company.CreationalDesignPatterns.AbstractFactory.SomeFactory;
-import com.company.CreationalDesignPatterns.AbstractFactory.SomeInterface1;
-import com.company.CreationalDesignPatterns.AbstractFactory.SomeInterface2;
-import com.company.CreationalDesignPatterns.Builder.DeveloperBuilder;
-import com.company.CreationalDesignPatterns.Factory.Factory;
-import com.company.CreationalDesignPatterns.Factory.Animal;
-import com.company.CreationalDesignPatterns.Factory.Dog;
-import com.company.CreationalDesignPatterns.Prototype.SomeClass;
-import com.company.CreationalDesignPatterns.SingletonClass;
+import com.company.adapter.AdaptertForSomeJavaAppToSomeDB;
+import com.company.adapter.JavaApp;
+import com.company.adapter.SomeDB;
+import com.company.adapter.SomeJavaApp;
+import com.company.bridge.Device;
+import com.company.bridge.Smartphone;
+import com.company.bridge.Sony;
+import com.company.composite.CompositeShape;
+import com.company.composite.Square;
+import com.company.composite.Triangle;
+import com.company.decorator.CppProgramingLanguage;
+import com.company.decorator.JavaProgramingLanguage;
+import com.company.decorator.ProgramingLanguageDecorator;
+import com.company.facade.SomeThread;
+import com.company.flyweight.FlyweightDomainName;
+import com.company.proxy.IPage;
+import com.company.proxy.Page;
+import com.company.proxy.ProxyPage;
 
 public class Main {
 
-    public static void main(String[] args) {
-        OOP();
-        CreationalDesignPatterns();
-    }
+    public static void main(String[] args) throws InterruptedException {
+        // Adapter
+        System.out.println("Adapter:");
+        SomeJavaApp javaApp = new JavaApp();
+        javaApp.selectObject();
+        SomeDB db = new AdaptertForSomeJavaAppToSomeDB(javaApp);
+        db.select();
 
-    static void OOP() {
-        SomePerson person = new SomePerson("Ivan");
-        System.out.println(person.getName());
-        person.startWalking();
-        person.stopWalking();
+        // Composite
+        System.out.println("\nComposite:");
+        Square square1 = new Square();
+        Square square2 = new Square();
+        Triangle triangle = new Triangle();
+        CompositeShape compositeShape = new CompositeShape();
+        compositeShape.addShape(square1);
+        compositeShape.addShape(square2);
+        compositeShape.addShape(triangle);
+        compositeShape.create();
+        compositeShape.removeShape(triangle);
+        compositeShape.create();
 
-        SomePerson oleg = new Oleg();
-        oleg.setAge((byte) 20);
-        System.out.println(oleg.getAge());
-        oleg.setAge("21");
-        System.out.println(oleg.getAge());
-        System.out.println(oleg.getName());
+        // Proxy
+        System.out.println("\nProxy:");
+        String url = "Google.com";
+        IPage page = new Page(url);
+        page = new ProxyPage(url);
+        page.show();
 
-        new Thread(() -> {
-            try {
-                Thread.sleep(10000);
-                oleg.stopWalking();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        // Flyweight
+        System.out.println("\nFlyweight:");
+        FlyweightDomainName flyweightDomainName = new FlyweightDomainName();
+        System.out.println(flyweightDomainName.getDomainNameByName("Google.com").name);
+        System.out.println(flyweightDomainName.getDomainNameByName("Amazon.com").name);
+        System.out.println(flyweightDomainName.getDomainNameByName("Google.com").name);
 
-        oleg.startWalking();
-    }
+        // Facade
+        SomeThread someThread = new SomeThread("\nFacade:");
+        someThread.start();
+        Thread.sleep(500);
 
-    static void CreationalDesignPatterns() {
-        //Singleton
-        System.out.println("SingletonClass.SOCKET_PORT: " + SingletonClass.SOCKET_PORT);
-        //Factory
-        System.out.println("\nFactory:");
-        try {
-            Animal cat = new Factory().animalFactory("cat");
-            cat.someSound();
-            Animal dog = Factory.ObjectFactoryCreate(Dog.class);
-            dog.someSound();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //Abstract Factory
-        System.out.println("\nAbstract Factory:");
-        try {
-            AbstractFactory Factory = new AbstractFactory();
-            SomeFactory someFactory1 = Factory.createFactory("SomeFactory1");
-            SomeInterface1 someClass1 = (SomeInterface1) someFactory1.crate("SomeClass1");
-            someClass1.someMethod();
-            SomeFactory someFactory2 = Factory.createFactory("SomeFactory2");
-            SomeInterface2 someClass4 = (SomeInterface2) someFactory2.crate("SomeClass4");
-            someClass4.someMethod2();
-        } catch (ClassNotFoundException e) { e.printStackTrace(); }
-        //Builder
-        System.out.println("\nBuilder:");
-        DeveloperBuilder developerBuilder = new DeveloperBuilder().setName("Oleg").setAge(20).setYearsOfExperience(2);
-        System.out.println(developerBuilder);
-        //Prototype
-        System.out.println("\nPrototype:");
-        SomeClass someClass = new SomeClass(100, "Text1");
-        System.out.println(someClass);
-        SomeClass copy = (SomeClass) someClass.copy();
-        System.out.println("Copy: " + copy);
-    }
+        // Bridge
+        System.out.println("\nBridge:");
+        Device device = new Smartphone(new Sony());
+        device.showDetails();
 
-}
-
-// OOP
-class SomePerson {
-
-    // encapsulation
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    private byte age;
-
-    public byte getAge() {
-        return age;
-    }
-
-    //polymorphism
-    public void setAge(byte age) {
-        this.age = age;
-    }
-
-    public void setAge(String age) {
-        try {
-            this.age = Byte.parseByte(age);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected int speed;
-    protected int distance;
-    protected boolean isWalking;
-
-    public SomePerson(String name) {
-        this.name = name;
-    }
-
-    public void startWalking() {
-        System.out.println("Don't have realization");
-    }
-
-    public void stopWalking() {
-        System.out.println("Don't have realization");
-    }
-
-}
-
-//inheritance
-class Oleg extends SomePerson {
-
-    public Oleg() {
-        super("Oleg");
-    }
-
-    {
-        this.speed = 1;
-        this.distance = 0;
-    }
-
-    @Override
-    public void startWalking() {
-        this.isWalking = true;
-        System.out.println("Start walking");
-        while (this.isWalking) {
-            try {
-                Thread.sleep(1000);
-                this.distance += speed;
-                System.out.println("Passed: " + this.distance + "m");
-            } catch (InterruptedException e) { e.printStackTrace(); }
-        }
-        System.out.println("Stop walking");
-    }
-
-    @Override
-    public void stopWalking() {
-        this.isWalking = false;
+        // Decorator
+        System.out.println("\nDecorator:");
+        ProgramingLanguageDecorator programingLanguageDecorator = new CppProgramingLanguage();
+        programingLanguageDecorator.opportunities();
+        programingLanguageDecorator = new JavaProgramingLanguage(programingLanguageDecorator);
+        programingLanguageDecorator.opportunities();
     }
 
 }
