@@ -12,4 +12,5 @@ public class InsertCommand implements Command {
     public void execute() {
         dataBase.insert();
     }
+
 }

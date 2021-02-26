@@ -12,4 +12,5 @@ public class DeleteCommand implements Command {
     public void execute() {
         dataBase.delete();
     }
+
 }

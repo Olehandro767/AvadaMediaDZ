@@ -3,6 +3,7 @@ package com.company.Strategy;
 import java.util.Arrays;
 
 public class StrategyClient {
+
     Strategy strategy;
 
     public StrategyClient(Strategy strategy) {

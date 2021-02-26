@@ -2,7 +2,7 @@ package com.company.Memento;
 
 public class CareTaker {
 
-    Memento memento;
+    private Memento memento;
 
     public Memento getMemento() {
         return memento;

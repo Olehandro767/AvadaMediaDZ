@@ -23,15 +23,15 @@ public class Client {
         select.execute();
     }
 
-    public void insertFromDB() {
+    public void insertToDB() {
         insert.execute();
     }
 
-    public void updateFromDB() {
+    public void updateToDB() {
         update.execute();
     }
 
-    public void deleteFromDB() {
+    public void deleteToDB() {
         delete.execute();
     }
 

@@ -1,6 +1,7 @@
 package com.company.State;
 
 public class Human {
+
     State state;
 
     public void setState(State state) {

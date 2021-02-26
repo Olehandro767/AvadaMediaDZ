@@ -1,32 +1,17 @@
 package com.company;
 
-import com.company.ChainOfResponsibility.FirstNotifier;
-import com.company.ChainOfResponsibility.Priority;
-import com.company.ChainOfResponsibility.SecondNotifier;
-import com.company.ChainOfResponsibility.ThirdNotifier;
+import com.company.ChainOfResponsibility.*;
 import com.company.Command.*;
-import com.company.Interpreter.Evaluate;
-import com.company.Interpreter.Expression;
-import com.company.Iterator.Iterator;
-import com.company.Iterator.OS;
-import com.company.Mediator.Mediator;
-import com.company.Mediator.Person1;
-import com.company.Memento.CareTaker;
-import com.company.Memento.Originator;
+import com.company.Interpreter.*;
+import com.company.Iterator.*;
+import com.company.Mediator.*;
+import com.company.Memento.*;
 import com.company.Observer.Observer;
-import com.company.State.Human;
-import com.company.State.RestState;
-import com.company.Strategy.BubbleSort;
-import com.company.Strategy.QuickSort;
-import com.company.Strategy.StrategyClient;
-import com.company.TemplateMethod.ConsoleLog;
-import com.company.TemplateMethod.FileLog;
-import com.company.TemplateMethod.Log;
-import com.company.Visitor.ASocket;
-import com.company.Visitor.Client_Socket;
-import com.company.Visitor.Server_Socket;
+import com.company.State.*;
+import com.company.Strategy.*;
+import com.company.TemplateMethod.*;
+import com.company.Visitor.*;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -41,7 +26,7 @@ public class Main {
         System.out.println("\nMediator:");
         Mediator mediator = new Mediator();
         Person1 person1 = new Person1(mediator, "Oleg");
-        Person1 person2 = new Person1(mediator, "Vova");
+        Person2 person2 = new Person2(mediator, "Vova");
         mediator.addPerson(person1);
         mediator.addPerson(person2);
         mediator.notifyAll("Hi");
@@ -61,7 +46,7 @@ public class Main {
         Observer observer2 = new Observer("second");
         observer.setStatus("status 1");
         //Strategy
-        System.out.println("\nObserver:");
+        System.out.println("\nStrategy:");
         int[] arr = new int[5];
         Random random = new Random();
         for (int i = 0; i < arr.length; i++)
@@ -77,7 +62,7 @@ public class Main {
         DataBase dataBase = new DataBase();
         Client client = new Client(new SelectCommand(dataBase), new InsertCommand(dataBase), new UpdateCommand(dataBase), new DeleteCommand(dataBase));
         client.selectFromDB();
-        client.insertFromDB();
+        client.insertToDB();
         //State
         System.out.println("\nState:");
         RestState state = new RestState();
@@ -99,9 +84,8 @@ public class Main {
         System.out.println("\nIterator:");
         OS os = new OS();
         Iterator iterator = os.getIterator();
-        while (iterator.hasNext()) {
+        while (iterator.hasNext())
             System.out.println(iterator.next());
-        }
         //Memento
         System.out.println("\nMemento:");
         Originator originator = new Originator();

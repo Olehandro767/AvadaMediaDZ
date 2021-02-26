@@ -12,4 +12,5 @@ public class SelectCommand implements Command {
     public void execute() {
         dataBase.select();
     }
+
 }
