@@ -5,8 +5,14 @@ import com.company.ChainOfResponsibility.Priority;
 import com.company.ChainOfResponsibility.SecondNotifier;
 import com.company.ChainOfResponsibility.ThirdNotifier;
 import com.company.Command.*;
+import com.company.Interpreter.Evaluate;
+import com.company.Interpreter.Expression;
+import com.company.Iterator.Iterator;
+import com.company.Iterator.OS;
 import com.company.Mediator.Mediator;
 import com.company.Mediator.Person1;
+import com.company.Memento.CareTaker;
+import com.company.Memento.Originator;
 import com.company.Observer.Observer;
 import com.company.State.Human;
 import com.company.State.RestState;
@@ -87,7 +93,25 @@ public class Main {
         socket.work(() -> System.out.println("Server is working"));
         //Interpreter
         System.out.println("\nInterpreter:");
+        Evaluate expression = new Evaluate("7+3+5");
+        System.out.println(expression.interpreter(expression));
         //Iterator
+        System.out.println("\nIterator:");
+        OS os = new OS();
+        Iterator iterator = os.getIterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
         //Memento
+        System.out.println("\nMemento:");
+        Originator originator = new Originator();
+        originator.setState("St 1");
+        System.out.println(originator.getState());
+        CareTaker careTaker = new CareTaker();
+        careTaker.setMemento(originator.getMemento());
+        originator.setState("St 2");
+        System.out.println(originator.getState());
+        originator.getDataFromMemento(careTaker.getMemento());
+        System.out.println(originator.getState());
     }
 }
