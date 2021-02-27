@@ -10,14 +10,16 @@ import com.company.bridge.Sony;
 import com.company.composite.CompositeShape;
 import com.company.composite.Square;
 import com.company.composite.Triangle;
-import com.company.decorator.CppProgramingLanguage;
-import com.company.decorator.JavaProgramingLanguage;
-import com.company.decorator.ProgramingLanguageDecorator;
-import com.company.facade.SomeThread;
+import com.company.decorator.Developer;
+import com.company.decorator.JavaDev;
+import com.company.decorator.SeniorJavaDev;
+import com.company.facade.Facade;
 import com.company.flyweight.FlyweightDomainName;
 import com.company.proxy.IPage;
 import com.company.proxy.Page;
 import com.company.proxy.ProxyPage;
+
+import java.util.Arrays;
 
 public class Main {
 
@@ -57,9 +59,9 @@ public class Main {
         System.out.println(flyweightDomainName.getDomainNameByName("Google.com").name);
 
         // Facade
-        SomeThread someThread = new SomeThread("\nFacade:");
-        someThread.start();
-        Thread.sleep(500);
+        System.out.println("\nFacade:");
+        Facade facade = new Facade();
+        facade.start();
 
         // Bridge
         System.out.println("\nBridge:");
@@ -68,10 +70,8 @@ public class Main {
 
         // Decorator
         System.out.println("\nDecorator:");
-        ProgramingLanguageDecorator programingLanguageDecorator = new CppProgramingLanguage();
-        programingLanguageDecorator.opportunities();
-        programingLanguageDecorator = new JavaProgramingLanguage(programingLanguageDecorator);
-        programingLanguageDecorator.opportunities();
+        Developer developer = new SeniorJavaDev(new JavaDev());
+        System.out.println(developer.makeJob());
     }
 
 }
