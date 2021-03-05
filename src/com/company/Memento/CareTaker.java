@@ -9,6 +9,10 @@ public class CareTaker {
     }
 
     public void setMemento(Memento memento) {
-        this.memento = memento;
+        if (this.memento == null)
+            this.memento = memento;
+        else {
+            this.memento.setState(memento.getState());
+        }
     }
 }

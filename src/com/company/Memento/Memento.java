@@ -1,15 +1,18 @@
 package com.company.Memento;
 
+import java.util.Stack;
+
 public class Memento {
 
-    private String state;
+    private Stack<String> state = new Stack<>();
 
-    public Memento(String s) {
-        state = s;
+    public Memento setState(String strState) {
+        this.state.add(strState);
+        return this;
     }
 
     public String getState() {
-        return state;
+        return state.pop();
     }
 
 }

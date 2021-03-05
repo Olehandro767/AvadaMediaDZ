@@ -2,6 +2,7 @@ package com.company.Memento;
 
 public class Originator {
 
+
     private String state;
 
     public String getState() {
@@ -17,7 +18,7 @@ public class Originator {
     }
 
     public Memento getMemento() {
-        return new Memento(this.state);
+        return new Memento().setState(state);
     }
 
 }

@@ -15,7 +15,7 @@ public class OS implements Collection {
 
         @Override
         public boolean hasNext() {
-            return (index < s.length) ? true : false;
+            return index < s.length;
         }
 
         @Override

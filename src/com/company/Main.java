@@ -6,7 +6,10 @@ import com.company.Interpreter.*;
 import com.company.Iterator.*;
 import com.company.Mediator.*;
 import com.company.Memento.*;
+import com.company.Observer.Label;
+import com.company.Observer.Observed;
 import com.company.Observer.Observer;
+import com.company.Observer.TextArea;
 import com.company.State.*;
 import com.company.Strategy.*;
 import com.company.TemplateMethod.*;
@@ -16,12 +19,13 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        //Template Method
+        //Template Method -? >
         System.out.println("Template Method:");
-        Log log = new ConsoleLog();
-        log.startLog();
-        log = new FileLog();
-        log.startLog();
+        Template page1 = new Page1();
+        Template page2 = new Page2();
+        page1.doSmth();
+        System.out.println("=========");
+        page2.doSmth();
         //Mediator
         System.out.println("\nMediator:");
         Mediator mediator = new Mediator();
@@ -40,11 +44,16 @@ public class Main {
         firstNotifier.sendMessage("text 1", Priority.first);
         firstNotifier.sendMessage("text 2", Priority.second);
         firstNotifier.sendMessage("text 3", Priority.third);
-        //Observer
+        //Observer -? >
         System.out.println("\nObserver:");
-        Observer observer = new Observer("first");
-        Observer observer2 = new Observer("second");
-        observer.setStatus("status 1");
+            //Like View
+            TextArea textArea = new TextArea("TextArea text");
+            Label label = new Label("Label text");
+            Observed observed = new Observed();
+            observed.add(textArea);
+            observed.add(label);
+            //Like ViewModel
+            ViewModel viewModel = new ViewModel();
         //Strategy
         System.out.println("\nStrategy:");
         int[] arr = new int[5];
@@ -70,12 +79,12 @@ public class Main {
         human.setState(state);
         for (int i = 0; i < 4; i++)
             human.doSomething();
-        //Visitor
+        //Visitor -? >
         System.out.println("\nVisitor:");
-        ASocket socket = new Client_Socket();
-        socket.work(() -> System.out.println("Client is working"));
-        socket = new Server_Socket();
-        socket.work(() -> System.out.println("Server is working"));
+        Project project = new Project();
+        project.doJob(new JavaDev());
+        System.out.println("=========");
+        project.doJob(new CppDev());
         //Interpreter
         System.out.println("\nInterpreter:");
         Evaluate expression = new Evaluate("7+3+5");
@@ -86,7 +95,7 @@ public class Main {
         Iterator iterator = os.getIterator();
         while (iterator.hasNext())
             System.out.println(iterator.next());
-        //Memento
+        //Memento -? >
         System.out.println("\nMemento:");
         Originator originator = new Originator();
         originator.setState("St 1");
@@ -94,8 +103,24 @@ public class Main {
         CareTaker careTaker = new CareTaker();
         careTaker.setMemento(originator.getMemento());
         originator.setState("St 2");
+        careTaker.setMemento(originator.getMemento());
+        originator.setState("St 3");
+        System.out.println(originator.getState());
+        originator.getDataFromMemento(careTaker.getMemento());
         System.out.println(originator.getState());
         originator.getDataFromMemento(careTaker.getMemento());
         System.out.println(originator.getState());
     }
+}
+
+final class ViewModel {
+
+    Observed observed = new Observed();
+
+    public ViewModel() {
+        observed.setSomeData("Some data 1");
+        System.out.println("===============================");
+        observed.setSomeData("Some data 2");
+    }
+
 }
