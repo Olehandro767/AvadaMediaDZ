@@ -6,10 +6,10 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-@Configuration
+//@Configuration
 public class JSPConfiguration {
 
-    @Bean
+//    @Bean
     public ViewResolver jspTemplateResolver() {
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
         internalResourceViewResolver.setViewClass(JstlView.class);

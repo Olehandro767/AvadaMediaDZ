@@ -15,7 +15,7 @@ public class ControllerMVC {
     @Autowired
     public IBrandModelDAO brandModelDAO;
 
-    @GetMapping("/MVC")
+    @GetMapping("/")
     public String mainMVC_Page(Model model) {
         brandModelDAO.addNewBrand(new BrandModel(UUID.randomUUID(), "Asus", 12));
         brandModelDAO.addNewBrand(new BrandModel(UUID.randomUUID(), "Apple", 30));

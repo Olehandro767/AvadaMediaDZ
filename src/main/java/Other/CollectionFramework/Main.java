@@ -46,6 +46,7 @@ public class Main<E> {
         System.out.println("compareTo:");
         System.out.println("oleg compareTo(oleg1) -> " + integerPersonHashMap.get("1").compareTo(oleg1));
         System.out.println("oleg compareTo(vova) -> " + integerPersonHashMap.get("1").compareTo(integerPersonHashMap.get("2")));
+        //TreeMap
         TreeMap<Person, String> treeMap = new TreeMap<>();
         treeMap.put(vova, "He will be third");
         treeMap.put(oleg, "Second");
@@ -53,7 +54,7 @@ public class Main<E> {
         System.out.println(treeMap);
         //iterator
         System.out.println("iterator:");
-        Iterator<Map.Entry<Person, String>> iterator = (treeMap).entrySet().iterator();
+        Iterator<Map.Entry<Person, String>> iterator = treeMap.entrySet().iterator();
         while (iterator.hasNext())
             System.out.println(iterator.next());
         //reduce
@@ -64,6 +65,7 @@ public class Main<E> {
 }
 
 final class Person implements Comparable<Person>, Comparator<Person> {
+
     final String name;
     final int age;
 
