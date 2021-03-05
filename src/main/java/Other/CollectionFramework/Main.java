@@ -60,6 +60,9 @@ public class Main<E> {
         //reduce
         System.out.println("reduce:");
         System.out.println(list1.stream().map(Person::getAge).reduce(Integer::max).get());
+
+        List<Integer> integers = Arrays.asList(2312, 4324, 3234, 1111);
+        integers.add(4323);
     }
 
 }

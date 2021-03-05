@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
         //Single Responsibility Principle
-        System.out.println("\n=======================================================\nSingle Responsibility Principle");
+        System.out.println("=======================================================\nSingle Responsibility Principle");
         Router router = new Router(new ConnectionManagement(), new DataTransfer());
         router.getConnectionManagement().connect();
         router.getDataTransfer().acceptData();
@@ -40,7 +40,7 @@ public class Main {
         System.out.println("\nDependency Inversion Principle");
         Device device = new Device("Some Device Model", new Brand());
         device.showInfo();
-        System.out.println("\n=======================================================\n");
+        System.out.println("\n=======================================================");
     }
 
 }
