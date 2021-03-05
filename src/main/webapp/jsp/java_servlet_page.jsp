@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    hhhh
+    <%
+        for (int i = 0; i < 5; i++) {
+            out.println(i + "<br>");
+        }
+    %>
 </body>
 </html>
