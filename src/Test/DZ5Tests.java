@@ -11,6 +11,13 @@ public class DZ5Tests {
         DZ5.Quicksort(arr);
         Assertions.assertEquals(true, e_(new int[]{11, 38, 55}, arr));
         Assertions.assertEquals(1, DZ5.BinarySearch(arr, 38));
+        DZ5.Node node = new DZ5.Node(
+                new DZ5.Node(11),
+                new DZ5.Node(55),
+                38
+        );
+        node.print();
+        Assertions.assertEquals(104, node.sum);
     }
 
     boolean e_(int[] arr1, int[] arr2) {
