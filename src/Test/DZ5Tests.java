@@ -16,7 +16,7 @@ public class DZ5Tests {
                 new DZ5.Node(55),
                 38
         );
-        node.print();
+//        node.print();
         Assertions.assertEquals(104, node.sum);
     }
 

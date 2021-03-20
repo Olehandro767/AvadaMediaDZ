@@ -2,6 +2,7 @@ package com.company;
 
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
 
@@ -19,6 +20,7 @@ public class Main {
 
         //Tree search (tree traversal)
         System.out.println("\ntree traversal");
+        /*
         DZ5.Node nodes = new DZ5.Node(
                 new DZ5.Node(
                         new DZ5.Node(
@@ -44,8 +46,22 @@ public class Main {
                 ),
                 arr[9]
         );
+        nodes.breadthFirstTraversal();
         nodes.print();
-        //Big O
+        */
+
+        Random random = new Random();
+        int temp = random.nextInt(100);
+        System.out.println(temp);
+        DZ5.Node node = new DZ5.Node(temp);
+        for (int i = 0; i < 7; i++) {
+            temp = random.nextInt(100);
+            System.out.println(temp);
+            node.add(temp);
+        }
+        System.out.println("============================");
+        node.breadthFirstTraversal();
+        node.print();
     }
 
 }
