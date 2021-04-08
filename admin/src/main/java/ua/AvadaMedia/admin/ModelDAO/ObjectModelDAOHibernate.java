@@ -3,51 +3,40 @@ package ua.AvadaMedia.admin.ModelDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-@Component
-public class ObjectModelDAOHibernate<T> implements IDelegateModelDAOHibernate<T>{
+@Service
+//@Scope("prototype")
+public class ObjectModelDAOHibernate implements IDelegateModelDAOHibernate {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    private Session session;
-
     @Override
-    public Session getSessionAndBeginTransaction() {
-        session = sessionFactory.openSession();
+    public void add(Object... objects) {
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
-        return session;
-    }
-
-    @Override
-    public void commitAndCloseSession() {
+        for (Object o : objects)
+            session.save(o);
         session.getTransaction().commit();
         session.close();
     }
 
     @Override
-    public void add(T... t_s) {
-        getSessionAndBeginTransaction();
-        for (T t :t_s)
-            session.save(t);
-        commitAndCloseSession();
+    public void add(Object o) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(o);
+        session.getTransaction().commit();
+        session.close();
     }
 
     @Override
-    public void add(T t) {
-        getSessionAndBeginTransaction();
-        session.save(t);
-        commitAndCloseSession();
+    public Session getSession() {
+        Session session = sessionFactory.openSession();
+        return session;
     }
 
-    @Override
-    public List<T> getListOfEntity(String hql) {
-        List<T> list = getSessionAndBeginTransaction().createQuery(hql).list();
-        commitAndCloseSession();
-        return list;
-    }
 
 }

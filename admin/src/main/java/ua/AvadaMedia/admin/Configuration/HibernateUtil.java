@@ -16,23 +16,14 @@ public class HibernateUtil {
 
     @Bean
     public SessionFactory getSessionFactory() {
-//        HashMap<String, String> hibernateSettings = new HashMap<>();
-//        hibernateSettings.put(Environment.URL, "");
-//        configuration.addAnnotatedClass(SEOBlock.class);
-//        configuration.addAnnotatedClass(Cinema.class);
-//        configuration.addAnnotatedClass(Advertising.class);
-//        org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
-//        return configuration.buildSessionFactory();
-
         // Create MetadataSources
         MetadataSources sources = new MetadataSources(new StandardServiceRegistryBuilder().configure().build());
 
-        // Create Metadata
+        // Create Metadata -> connect to MySQL
         Metadata metadata = sources.getMetadataBuilder().build();
 
         // Create SessionFactory
         return metadata.getSessionFactoryBuilder().build();
-
     }
 
 }

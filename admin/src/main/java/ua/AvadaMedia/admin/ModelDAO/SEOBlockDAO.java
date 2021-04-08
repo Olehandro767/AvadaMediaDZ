@@ -9,14 +9,14 @@ import ua.AvadaMedia.admin.Model.SEOBlock;
 public class SEOBlockDAO {
 
 //    @Autowired
-    private IDelegateModelDAOHibernate<SEOBlock> delegateModelDAOHibernate;
-
-    public void add(SEOBlock... seoBlocks) {
-        delegateModelDAOHibernate.add(seoBlocks);
-    }
-
-    public void add(SEOBlock seoBlock) {
-        delegateModelDAOHibernate.add(seoBlock);
-    }
+//    private IDelegateModelDAOHibernate<SEOBlock> delegateModelDAOHibernate;
+//
+//    public void add(SEOBlock... seoBlocks) {
+//        delegateModelDAOHibernate.add(seoBlocks);
+//    }
+//
+//    public void add(SEOBlock seoBlock) {
+//        delegateModelDAOHibernate.add(seoBlock);
+//    }
 
 }

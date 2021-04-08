@@ -4,12 +4,10 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-public interface IDelegateModelDAOHibernate<T> {
+public interface IDelegateModelDAOHibernate {
 
-    Session getSessionAndBeginTransaction();
-    void commitAndCloseSession();
-    void add(T... t);
-    void add(T t);
-    List<T> getListOfEntity(String hql);
+    void add(Object... objects);
+    void add(Object o);
+    Session getSession();
 
 }
