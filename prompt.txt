@@ -1,0 +1,9 @@
+ng serve 
+
+export PATH="$PATH:/home/oleg/jdk-15.0.2/bin/"
+./gradlew clean
+./gradlew bootRun
+
+
+keytool -genkey -alias adminREST -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore adminREST.p12 -validity 750
+# admin1 //password

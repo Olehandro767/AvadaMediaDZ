@@ -1,0 +1,19 @@
+.image_card {
+    width: 15rem;
+    margin-bottom: 1%;
+    display: inline;
+}
+
+#main_image_card {
+    width: 25rem;
+    margin-bottom: 1%;
+}
+
+.picture .cross {
+    display: block;
+    float: right;
+    background: rgb(224, 0, 0);
+    color: white;
+    border-width: 0px;
+    border-radius: 15%;
+}
