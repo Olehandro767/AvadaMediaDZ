@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { mainHost } from '../commonConstants';
 import { AjaxService } from './ajax.service';
-import { ErrorService } from './error.service';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  constructor(private ajax: AjaxService, private errorService: ErrorService) { }
+  constructor(private ajax: AjaxService, private errorService: MessageService) { }
 
   private static applicationIsStarted = false
   private static loginStr: string = 'admin'

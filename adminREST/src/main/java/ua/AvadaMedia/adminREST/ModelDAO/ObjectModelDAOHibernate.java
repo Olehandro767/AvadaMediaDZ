@@ -1,3 +1,4 @@
+/*
 package ua.AvadaMedia.adminREST.ModelDAO;
 
 import org.hibernate.Session;
@@ -42,3 +43,4 @@ public class ObjectModelDAOHibernate implements IDelegateModelDAOHibernate {
 
 
 }
+*/

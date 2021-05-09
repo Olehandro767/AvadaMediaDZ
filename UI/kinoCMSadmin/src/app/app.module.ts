@@ -13,8 +13,9 @@ import { PagesComponent } from './pages/pages.component';
 import { UsersComponent } from './users/users.component';
 import { MailingComponent } from './mailing/mailing.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ErrorComponent } from './error/error.component';
+import { MessageComponent } from './message/message.component';
 import { FormsModule } from '@angular/forms';
+import { SeoBlockComponent } from './seo-block/seo-block.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     PagesComponent,
     UsersComponent,
     MailingComponent,
-    ErrorComponent,
+    MessageComponent,
+    SeoBlockComponent,
   ],
   imports: [
     BrowserModule,

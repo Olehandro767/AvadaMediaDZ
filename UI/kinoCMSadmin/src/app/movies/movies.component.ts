@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { mainHost, movieURL } from '../commonConstants';
+import { mainHost, movieURL, seoBlockURL } from '../commonConstants';
 import { AjaxService } from '../service/ajax.service';
-import { ErrorService } from '../service/error.service';
+import { MessageService } from '../service/message.service';
+import { SeoBlockService } from '../service/seo-block-service.service';
 import { SessionService } from '../service/session.service';
 
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.css'],
-  providers: [AjaxService, ErrorService]
+  providers: [AjaxService, MessageService]
 })
 export class MoviesComponent {
 
@@ -20,7 +21,7 @@ export class MoviesComponent {
   private mainImageFile: File = null
   private imageFiles: Array<File> = []
 
-  constructor(private ajax: AjaxService, private errorService: ErrorService) { }
+  constructor(private ajax: AjaxService, private messageService: MessageService) { }
 
   public openInpunMode(): void {
     this.inputMode = true
@@ -47,7 +48,7 @@ export class MoviesComponent {
         this.mainImageFile = file
       }
       render.readAsDataURL(event.target.files[0])
-    } else this.errorService.open('/assets/pngwing.com.png', 'Can\'t open image')
+    } else this.messageService.open('/assets/pngwing.com.png', 'Can\'t open image')
   }
 
   public removePhoto(index: number): void {
@@ -55,9 +56,8 @@ export class MoviesComponent {
     else this.mainImage = ''
   }
 
-  public submit(nameInput: string, descriptionTextarea: string, linkInput: string, twoD: boolean, threeD: boolean, imax: boolean) {
-    if (nameInput != '' && this.mainImage != '') {
-      let filteredImageFiles: Array<File> = []
+  private addNewMovie(nameInput: string, descriptionTextarea: string, linkInput: string, twoD: boolean, threeD: boolean, imax: boolean, seoResponse) {
+    let filteredImageFiles: Array<File> = []
       this.imageFiles.forEach(elem => {
         if (elem != null) filteredImageFiles.push(elem)
       })
@@ -73,18 +73,59 @@ export class MoviesComponent {
                 ++index
                 let formData = new FormData()
                 formData.append('file', elem, `${nameInput}_${index}_${elem.name}`)
-                this.ajax.getHttpClient().post(`${movieURL}/addPhoto`, formData, { observe : 'response' }).subscribe(
-                  body => {},
-                  error => {}
+                this.ajax.getHttpClient().post(`${movieURL}/addPhoto`, formData, { observe: 'response' }).subscribe(
+                  body => { },
+                  error => {
+                    this.messageService.open('/assets/pngwing.com.png', `Problems with gallery of photo (index: ${index})`)
+                  }
                 )
               })
-            } else {
+              while ((index) <= filteredImageFiles.length) { 
+                console.log(`${index} : ${filteredImageFiles.length}`)
+              }
             }
+            let body = {
+              name: nameInput,
+              description: descriptionTextarea,
+              link: linkInput,
+              twoD: twoD,
+              threeD: threeD,
+              imax: imax,
+              seoBlockId: null
+            }
+            body.seoBlockId = (seoResponse != null) ? seoResponse : -1
+            this.ajax.post(`${movieURL}/addNewMovie`, body).subscribe(
+              data => {
+                this.messageService.openNotify('/assets/pngarea.com_check-mark-icon-472478.png', this.messageService.getDictionary()[2], 'Good request')
+                this.inputMode = !this.inputMode
+              },
+              error => {
+                this.messageService.open('/assets/pngwing.com.png', 'Can\t send data')
+              }
+            )
           }
         },
-        error => { }
+        error => {
+          this.messageService.open('/assets/pngwing.com.png', 'Problems with request main photo')
+        }
       )
-    } else this.errorService.open('/assets/pngwing.com.png', 'Please, write movie name and other info')
+  }
+
+  public submit(nameInput: string, descriptionTextarea: string, linkInput: string, twoD: boolean, threeD: boolean, imax: boolean) {
+    if (nameInput != '' && this.mainImage != '') {
+      let seoBlockTemp = SeoBlockService.seoBlock
+      if (seoBlockTemp.isValidate()) {
+        seoBlockTemp.createRequest().subscribe(
+          data => {
+            console.log(JSON.stringify(data))
+            this.addNewMovie(nameInput, descriptionTextarea, linkInput, twoD, threeD, imax, data)
+          },
+          error => {
+            this.messageService.open('/assets/pngwing.com.png', 'Problems with request SEO Block')
+          }
+        )
+      } else this.addNewMovie(nameInput, descriptionTextarea, linkInput, twoD, threeD, imax, null)
+    } else this.messageService.open('/assets/pngwing.com.png', 'Please, write movie name and other info')
   }
 
 }

@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { ErrorService } from '../service/error.service';
+import { MessageService } from '../service/message.service';
 
 @Component({
-  selector: 'app-error',
-  templateUrl: './error.component.html',
-  styleUrls: ['./error.component.css']
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.css']
 })
-export class ErrorComponent {
+export class MessageComponent {
 
-  public idState4MainContainer: Array<string> = ['main_container_close', 'main_container']
+  public idState4MainContainer: Array<string> = ['main_container_close', 'main_container', 'main_container_message']
 
   public isOpen: boolean = false
   public imgPath: string = ''
   public mainContainer: string = this.idState4MainContainer[0]
   public message: string = ''
 
-  constructor(private errorService: ErrorService) {
+  constructor(private errorService: MessageService) {
     this.errorService.setErrorComponent(this)
   }
 
@@ -33,6 +33,12 @@ export class ErrorComponent {
   public open() {
     this.isOpen = true
     this.mainContainer = this.idState4MainContainer[1]
+    this.autoClose()
+  }
+
+  public openNotify(str: string) {
+    this.isOpen = true
+    this.mainContainer = str
     this.autoClose()
   }
 

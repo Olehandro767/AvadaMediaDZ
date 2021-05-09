@@ -3,6 +3,7 @@ package ua.AvadaMedia.adminREST.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ua.AvadaMedia.adminREST.RequestBody.MovieRequestBody;
 import ua.AvadaMedia.adminREST.Service.UploadFileService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,10 +29,8 @@ public class MovieRESTController {
 
     @PostMapping("/addNewMovie")
     @CrossOrigin
-    public boolean addNewMovie(
-//            HttpServletRequest httpServletRequest
-    ) {
-        return false;
+    public boolean addNewMovie(@RequestBody MovieRequestBody requestBody) {
+        return true;
     }
 
 }

@@ -1,3 +1,4 @@
+/*
 package ua.AvadaMedia.adminREST.Configuration;
 
 import org.springframework.context.annotation.Bean;
@@ -25,4 +26,4 @@ public class JPAUtil {
         return entityManager;
     }
 
-}
+}*/

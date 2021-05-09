@@ -1,3 +1,4 @@
+/*
 package ua.AvadaMedia.adminREST.Configuration;
 
 import org.hibernate.SessionFactory;
@@ -23,3 +24,4 @@ public class HibernateUtil {
     }
 
 }
+*/

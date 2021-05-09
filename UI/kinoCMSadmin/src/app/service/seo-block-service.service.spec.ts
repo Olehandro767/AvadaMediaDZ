@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MessageService } from './message.service';
+import { SeoBlockService } from './seo-block-service.service';
 
-describe('ErrorService', () => {
-  let service: MessageService;
+describe('SeoBlockServiceService', () => {
+  let service: SeoBlockService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MessageService);
+    service = TestBed.inject(SeoBlockService);
   });
 
   it('should be created', () => {

@@ -11,7 +11,7 @@ import { SessionService } from './service/session.service';
 export class AppComponent {
 
   public title: string = mainTitle
-  public inState: boolean = !true
+  public inState: boolean = true
 
   constructor(private sessionService: SessionService) {
     sessionService.setMainAppComponent(this)

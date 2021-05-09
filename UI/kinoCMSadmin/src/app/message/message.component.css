@@ -1,27 +1,27 @@
-#main_container_close {
+.main_container {
     padding: 1%;
     position: fixed;
     top: 59%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgb(216, 0, 0);
     width: max-content;
     max-width: 40%;
     height: min-content;
+}
+
+#main_container_close {
+    background: rgb(39, 39, 39);
     opacity: 0;
     transition: 0.3s;
 }
 
 #main_container {
-    padding: 1%;
-    position: fixed;
-    top: 59%;
-    left: 50%;
-    transform: translateX(-50%);
     background: rgb(216, 0, 0);
-    width: max-content;
-    max-width: 40%;
-    height: min-content;
+    transition: 0.3s;
+}
+
+#main_container_message {
+    background: rgb(0, 150, 62);
     transition: 0.3s;
 }
 

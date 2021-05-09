@@ -1,30 +1,69 @@
 package ua.AvadaMedia.adminREST.RequestBody;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Map;
-
 public class MovieRequestBody {
 
-    private MultipartFile file;
+    private String name;
+    private String description;
+    private String link;
+    private boolean twoD;
+    private boolean threeD;
+    private boolean imax;
+    private int seoBlockId;
 
-//    public String login;
-//    public String movieName;
-//    public String description;
-//    public Picture mainPictureFileInput;
-//    public Picture[] gallery;
-//    public String link;
-//    public boolean twoD;
-//    public boolean threeD;
-//    public boolean imaxD;
-
-
-    public MultipartFile getFile() {
-        return file;
+    public String getName() {
+        return name;
     }
 
-    public void setFile(MultipartFile file) {
-        this.file = file;
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public boolean isTwoD() {
+        return twoD;
+    }
+
+    public boolean isThreeD() {
+        return threeD;
+    }
+
+    public boolean isImax() {
+        return imax;
+    }
+
+    public int getSeoBlockId() {
+        return seoBlockId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public void setTwoD(boolean twoD) {
+        this.twoD = twoD;
+    }
+
+    public void setThreeD(boolean threeD) {
+        this.threeD = threeD;
+    }
+
+    public void setImax(boolean imax) {
+        this.imax = imax;
+    }
+
+    public void setSeoBlockId(int seoBlockId) {
+        this.seoBlockId = seoBlockId;
     }
 
 }
