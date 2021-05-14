@@ -12,7 +12,6 @@ public class MoviePage {
     @Column(nullable = false)
     private String title;
     private String description;
-//    private String path_to_main_image;
     private String trailer_link;
     @ManyToOne(optional = false)
     @Column(nullable = false)

@@ -6,33 +6,33 @@
                     <h1>{{ title }}</h1>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
     <div class="row" style="width: 100%;">
-        <div class="card-body col-md-3">
-            <img src="assets/test_movie_photo.jpg" class="img-fluid" alt="">
-            <div class="small-box-footer" style="width: 100%; text-align: center;">Джентельмены</div>
+        <div class="card-body col-md-3" *ngFor="let movie of imagesForMoviesMainPage">
+            <img style="display: block; margin-left: auto; margin-right: auto;" src="{{ movie[3] }}" class="img-fluid" alt="mainImg">
+            <div style="width: 100%; text-align: center;">{{ movie[1] }}</div>
         </div>
     </div>
-    <section class="content-header">
+    <!-- <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Soon</h1>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
     <div class="row" style="width: 100%;">
         <div class="card-body col-md-3">
             <img src="assets/test_movie_photo.jpg" class="img-fluid" alt="">
             <div class="small-box-footer" style="width: 100%; text-align: center;">Джентельмены</div>
         </div>
-    </div>
+    </div> -->
     <button class="btn btn-block btn-success btn-lg" (click)="openInpunMode()">Add new</button>
 </ng-container>
 
-<!-- Input -->
+<!-- Input Mode -->
 
 <ng-container *ngIf="inputMode">
     <form action="" method="post" enctype="multipart/form-data">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="link_input">Link</label>
                 <input type="text" name="trailer_link" class="form-control" #link_input placeholder="link">
             </div>
@@ -89,10 +89,17 @@
                     <input type="checkbox" name="imax" class="custom-control-input" id="imax" #imax>
                     <label class="custom-control-label" for="imax">IMAX</label>
                 </div>
-            </div>
+            </div> -->
             <app-seo-block></app-seo-block>
         </div>
-        <input type="button" class="btn btn-block btn-success btn-lg" value="Submit"
-            (click)="submit(name_input.value, description_textarea.value, link_input.value, twoD.checked, threeD.checked, imax.checked)" >
+        <input type="button" class="btn btn-block btn-success btn-lg" value="Submit" (click)="submit(
+                name_input.value, 
+                description_textarea.value
+                )">
     </form>
 </ng-container>
+
+<!-- //link_input.value, 
+                //twoD.checked, 
+                //threeD.checked, 
+                //imax.checked -->

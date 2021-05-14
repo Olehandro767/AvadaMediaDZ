@@ -20,6 +20,7 @@ public class UploadFileService {
         return uploadPath;
     }
 
+    @Deprecated
     public void setUploadPath(String uploadPath) {
         this.uploadPath = uploadPath;
     }
@@ -37,5 +38,7 @@ public class UploadFileService {
         FileOutputStream outputStream = new FileOutputStream(uploadPath + path);
         outputStream.write(bytes);
     }
+
+
 
 }
