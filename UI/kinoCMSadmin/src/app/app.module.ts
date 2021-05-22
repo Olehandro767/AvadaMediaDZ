@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './message/message.component';
 import { FormsModule } from '@angular/forms';
 import { SeoBlockComponent } from './seo-block/seo-block.component';
+import { HallComponent } from './hall/hall.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SeoBlockComponent } from './seo-block/seo-block.component';
     MailingComponent,
     MessageComponent,
     SeoBlockComponent,
+    HallComponent,
   ],
   imports: [
     BrowserModule,

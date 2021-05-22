@@ -8,6 +8,6 @@ import java.util.HashMap;
 @Service
 public class TempGalleryForMovieDAO {
 
-    public HashMap<Long, GalleryForMovie> galleryForMovieHashMap = new HashMap<>();
+    public HashMap<Long, GalleryForMovie> map = new HashMap<>();
 
 }

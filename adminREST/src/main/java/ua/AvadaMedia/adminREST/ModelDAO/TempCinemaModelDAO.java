@@ -1,14 +1,14 @@
 package ua.AvadaMedia.adminREST.ModelDAO;
 
 import org.springframework.stereotype.Service;
-import ua.AvadaMedia.adminREST.Model.Movie;
+import ua.AvadaMedia.adminREST.Model.Cinema;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class TempMovieModelDAO {
+public class TempCinemaModelDAO {
 
-    public Map<Long, Movie> map = new HashMap<>();
+    public Map<Long, Cinema> map = new HashMap<>();
 
 }

@@ -8,7 +8,7 @@ public class MovieRequestBody {
 //    private boolean twoD;
 //    private boolean threeD;
 //    private boolean imax;
-    private int seoBlockId = -1;
+    private long seoBlockId = -1;
 
     public String getName() {
         return name;
@@ -34,7 +34,7 @@ public class MovieRequestBody {
 //        return imax;
 //    }
 
-    public int getSeoBlockId() {
+    public long getSeoBlockId() {
         return seoBlockId;
     }
 
@@ -62,7 +62,7 @@ public class MovieRequestBody {
 //        this.imax = imax;
 //    }
 
-    public void setSeoBlockId(int seoBlockId) {
+    public void setSeoBlockId(long seoBlockId) {
         this.seoBlockId = seoBlockId;
     }
 

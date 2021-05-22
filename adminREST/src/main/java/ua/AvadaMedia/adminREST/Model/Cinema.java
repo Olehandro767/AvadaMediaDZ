@@ -14,6 +14,7 @@ public class Cinema {
     private String description;
     private String about_cinema;
     private String conditions;
+    @Column(nullable = false)
     private String path_to_logo_image;
     private String path_to_top_banner_image;
     @ManyToOne

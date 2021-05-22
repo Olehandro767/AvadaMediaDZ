@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { mainHost, mainHostForFiles, movieURL, seoBlockURL } from '../commonConstants';
+import { mainHostForFiles, movieURL } from '../commonConstants';
+import { IBack } from '../interfaces/IBack';
+import { IInputMode } from '../interfaces/IInputMode';
 import { AjaxService } from '../service/ajax.service';
 import { MessageService } from '../service/message.service';
 import { SeoBlockService } from '../service/seo-block-service.service';
-import { SessionService } from '../service/session.service';
 
 @Component({
   selector: 'app-movies',
@@ -11,7 +12,7 @@ import { SessionService } from '../service/session.service';
   styleUrls: ['./movies.component.css'],
   providers: [AjaxService, MessageService]
 })
-export class MoviesComponent {
+export class MoviesComponent implements IInputMode, IBack {
 
   public inputMode: boolean = false
   public title: string = 'Movies'
@@ -35,7 +36,17 @@ export class MoviesComponent {
     window.scrollTo(0, 0);
   }
 
-  getCurrentMovies() {
+  public closeInpunMode(): void {
+    this.getCurrentMovies()
+    this.inputMode = false
+    window.scrollTo(0, 0);
+  }
+
+  public back(): void {
+    this.closeInpunMode()
+  }
+
+  private getCurrentMovies() {
     this.ajax.get(`${movieURL}/getAllMovies`).subscribe(
       data => {
         this.imagesForMoviesMainPage = []
@@ -53,12 +64,6 @@ export class MoviesComponent {
       },
       error => { }
     )
-  }
-
-  public closeInpunMode(): void {
-    this.getCurrentMovies()
-    this.inputMode = false
-    window.scrollTo(0, 0);
   }
 
   public openPhoto(event: any, index: number): void {

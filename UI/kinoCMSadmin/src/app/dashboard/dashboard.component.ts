@@ -18,8 +18,8 @@ export class DashboardComponent implements OnInit {
   //class for item
   public adminItems: Array<Array<string>> = [
     [this.classNonActivate, 'Banners', `/${bannersPath}`], [this.classNonActivate, 'Movies', `/${moviesPath}`],
-    [this.classNonActivate, 'Cinemas', `/${cinemasPath}`], [this.classNonActivate, 'News', `/${newsPath}`],
-    [this.classNonActivate, 'Stocks', `/${stocksPath}`], [this.classNonActivate, 'Pages', `/${pagesPath}`],
+    [this.classNonActivate, 'Cinemas', `/${cinemasPath}`], [this.classNonActivate, 'News @Deprecated', `/${newsPath}`],
+    [this.classNonActivate, 'Stocks @Deprecated', `/${stocksPath}`], [this.classNonActivate, 'Pages', `/${pagesPath}`],
     [this.classNonActivate, 'Users', `/${usersPath}`], [this.classNonActivate, 'Mailing', `/${mailingPath}`]
   ]
 

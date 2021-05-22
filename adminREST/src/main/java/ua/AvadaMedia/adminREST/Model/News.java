@@ -12,7 +12,7 @@ public class News {
     private long id;
     private String title;
     private String description;
-    private Date date_;
+    private Date date_of_publication;
     private String path_to_main_image;
     private String video_link;
     private boolean state = true;
