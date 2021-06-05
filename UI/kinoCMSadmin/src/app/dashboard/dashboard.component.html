@@ -58,8 +58,25 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item" *ngFor="let value of adminItems">
-                    <a routerLink="{{value[2]}}" href="#" [class]="value[0]" (click)="activate(value[1])">
+                <li class="nav-item menu-is-opening menu-open" *ngFor="let value of adminItems">
+                    <ng-container *ngIf="value[1] === 'Cinemas'; else else_block">
+                        <a href="#" class="nav-link" routerLink="{{value[2]}}">
+                            <p>
+                                {{ value[1] }}
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item" *ngFor="let item of cinemasItems">
+                                <a href="#" routerLink="{{ item[2] }}" [class]="item[0]" (click)="activate(item[1])">
+                                    <p>
+                                        {{ item[1] }}
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <a #else_bock *ngIf="value[1] != 'Cinemas'" routerLink="{{value[2]}}" href="#" [class]="value[0]" (click)="activate(value[1])">
                         <p>
                             {{ value[1] }}
                         </p>

@@ -1,4 +1,4 @@
-package ua.AvadaMedia.adminREST.RequestBody;
+package ua.AvadaMedia.adminREST.RequestBody.SEOBlockDependencies;
 
 public class CinemaRequestBody {
 
@@ -12,36 +12,36 @@ public class CinemaRequestBody {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getAboutCinema() {
-        return aboutCinema;
-    }
-
-    public String getConditions() {
-        return conditions;
-    }
-
-    public long getSeoBlockId() {
-        return seoBlockId;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public String getAboutCinema() {
+        return aboutCinema;
+    }
+
     public void setAboutCinema(String aboutCinema) {
         this.aboutCinema = aboutCinema;
     }
 
+    public String getConditions() {
+        return conditions;
+    }
+
     public void setConditions(String conditions) {
         this.conditions = conditions;
+    }
+
+    public long getSeoBlockId() {
+        return seoBlockId;
     }
 
     public void setSeoBlockId(long seoBlockId) {

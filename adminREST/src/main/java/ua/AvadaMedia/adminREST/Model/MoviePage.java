@@ -14,10 +14,8 @@ public class MoviePage {
     private String description;
     private String trailer_link;
     @ManyToOne(optional = false)
-    @Column(nullable = false)
     private Movie movie;
     @ManyToOne(optional = false)
-    @Column(nullable = false)
     private TypeMovie typeMovie;
     @ManyToOne
     private SEOBlock seo_block;

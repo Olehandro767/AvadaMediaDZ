@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="title_input">Title</label>
                 <input id="title_input" type="text" name="title" class="form-control" placeholder="Title"
-                    #title_input>
+                    #name_input>
             </div>
             <div class="form-group">
                 <label for="description_textarea">Description</label>
@@ -47,6 +47,29 @@
             <div class="form-group">
                 <label for="link_input">Link</label>
                 <input type="text" name="trailer_link" class="form-control" #link_input placeholder="Link">
+            </div>
+            <div class="form-group" style="width: max-content;">
+                <label for="main_picture_input">Main image *</label><br>
+                <div class="picture" *ngIf="mainImage != ''">
+                    <input class="cross" type="button" value="X" style="transform: translateX(-100%);"
+                        (click)="removePhoto(-2)">
+                    <img [src]="mainImage" class="main_image_card" #logo_img_input /><br>
+                </div>
+                <input type="file" style="display: none;" (change)="openPhoto($event, -2)" #logo_file_input>
+                <input type="button" value="Select photo" style="display: block; margin: 0px auto;"
+                    (click)="logo_file_input.click()" *ngIf="mainImage == ''">
+            </div>
+            <label for="gallery_input">Gallery</label><br>
+            <input type="button" value="Select photo" (click)="picture_file_input.click()">
+            <input type="file" style="display: none;" (change)="openPhoto($event, null)" #picture_file_input>
+            <div class="row" style="width: 100%;">
+                <div class="card-body col-md-3" *ngFor="let image of gallery; index as i">
+                    <div class="picture">
+                        <input type="button" class="cross" value="X"
+                            style="width: 15rem; float: none; border-radius: 0px;" (click)="removePhoto(i)">
+                        <img src="{{ image }}" class="image_card">
+                    </div>
+                </div>
             </div>
             <app-seo-block></app-seo-block>
         </div>

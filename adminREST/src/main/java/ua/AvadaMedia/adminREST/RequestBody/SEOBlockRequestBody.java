@@ -11,28 +11,28 @@ public class SEOBlockRequestBody {
         return seoURL;
     }
 
-    public String getSeoTitle() {
-        return seoTitle;
-    }
-
-    public String getSeoKeyword() {
-        return seoKeyword;
-    }
-
-    public String getSeoDescription() {
-        return seoDescription;
-    }
-
     public void setSeoURL(String seoURL) {
         this.seoURL = seoURL;
+    }
+
+    public String getSeoTitle() {
+        return seoTitle;
     }
 
     public void setSeoTitle(String seoTitle) {
         this.seoTitle = seoTitle;
     }
 
+    public String getSeoKeyword() {
+        return seoKeyword;
+    }
+
     public void setSeoKeyword(String seoKeyword) {
         this.seoKeyword = seoKeyword;
+    }
+
+    public String getSeoDescription() {
+        return seoDescription;
     }
 
     public void setSeoDescription(String seoDescription) {

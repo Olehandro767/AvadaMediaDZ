@@ -9,6 +9,7 @@ import ua.AvadaMedia.adminREST.RequestBody.SessionRequestBody;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@Deprecated
 public class Session {
 
     @PostMapping("/session")

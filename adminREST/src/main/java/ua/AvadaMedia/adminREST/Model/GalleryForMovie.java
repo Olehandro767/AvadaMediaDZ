@@ -2,8 +2,9 @@ package ua.AvadaMedia.adminREST.Model;
 
 import javax.persistence.*;
 
+//@Deprecated
 @Entity
-@Table(name = "gallery_for_movie_page")
+@Table(name = "gallery_for_movie")
 public class GalleryForMovie {
 
     @Id

@@ -1,19 +1,14 @@
 package ua.AvadaMedia.adminREST.Service;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import ua.AvadaMedia.adminREST.DelegateMethod.IFileDelegateMethod;
-import ua.AvadaMedia.adminREST.Model.GalleryForMovie;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Objects;
 
 @Service
-@Scope("prototype")
+//@Scope("prototype")
 public class UploadFileService {
 
     @Value("${uploadPath}")
@@ -42,6 +37,7 @@ public class UploadFileService {
         outputStream.write(bytes);
     }
 
+    // Movie_main_avadaMedia.png
     public boolean addPhoto(String pathForFile, String originalFilename, byte[] fileBytes) {
         try {
             String movieNamePath = pathForFile + "/" + originalFilename.substring(0, originalFilename.indexOf("_"));
@@ -54,13 +50,15 @@ public class UploadFileService {
         return true;
     }
 
-    /*public void folderProcess(String folderPath, IFileDelegateMethod afterIfDelegateMethod, IFileDelegateMethod afterElseDelegateMethod) {
-        for (File tempFile : Objects.requireNonNull(new File(folderPath).listFiles())) {
-            if (tempFile.getName().contains("main"))
-                afterIfDelegateMethod.voidMethod(tempFile);
-            else
-                afterElseDelegateMethod.voidMethod(tempFile);
-        }
-    }*/
+    public String convertPathToValueForDataBase(File file, String entityPath) {
+        return file.getAbsolutePath().substring(file.getAbsolutePath().indexOf(entityPath + "/"));
+    }
+
+    public String createFilePath(String... strings) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(uploadPath).append("/");
+        for (String s : strings) stringBuilder.append(s).append("/");
+        return stringBuilder.toString();
+    }
 
 }

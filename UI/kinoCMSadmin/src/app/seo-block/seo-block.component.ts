@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { seoBlockURL } from '../commonConstants';
 import { AjaxService } from '../service/ajax.service';
+import { MessageService } from '../service/message.service';
 import { SeoBlockService } from '../service/seo-block-service.service';
 
 @Component({
@@ -59,11 +60,25 @@ export class SeoBlockComponent {
 
   public createRequest(): Observable<object> {
     return this.ajax.post(`${seoBlockURL}/addNewSEOBlock`, {
-      seoURL : this.seoUrl,
-      seoTitle : this.seoTitle,
-      seoKeyword : this.seoKeyword,
-      seoDescription : this.seoDescription
+      seoURL: this.seoUrl,
+      seoTitle: this.seoTitle,
+      seoKeyword: this.seoKeyword,
+      seoDescription: this.seoDescription
     })
+  }
+
+  public sendSeoBlock(ifYesMethod: (data: any) => void, ifNoMethod: () => void, messageService: MessageService) {
+    if (this.isValidate()) {
+      this.createRequest().subscribe(
+        data => {
+          console.log(JSON.stringify(data))
+          ifYesMethod(data as any)
+        },
+        error => {
+          messageService.open('/assets/pngwing.com.png', 'Problems with request SEO Block')
+        }
+      )
+    } else ifNoMethod()
   }
 
 }

@@ -23,6 +23,7 @@
         <mapping class="ua.AvadaMedia.adminREST.Model.GalleryForCinema"/>
         <mapping class="ua.AvadaMedia.adminREST.Model.GalleryForContacts"/>
         <mapping class="ua.AvadaMedia.adminREST.Model.GalleryForHall"/>
+        <mapping class="ua.AvadaMedia.adminREST.Model.GalleryForMovie"/>
         <mapping class="ua.AvadaMedia.adminREST.Model.GalleryForMoviePage"/>
         <mapping class="ua.AvadaMedia.adminREST.Model.GalleryForNews"/>
         <mapping class="ua.AvadaMedia.adminREST.Model.GalleryForStock"/>

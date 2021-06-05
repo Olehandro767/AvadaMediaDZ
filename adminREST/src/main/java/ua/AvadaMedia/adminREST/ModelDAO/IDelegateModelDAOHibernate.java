@@ -1,15 +1,13 @@
-/*
 package ua.AvadaMedia.adminREST.ModelDAO;
 
-import org.hibernate.Session;
+import ua.AvadaMedia.adminREST.DelegateMethod.IBooleanDelegateMethodForSession;
+import ua.AvadaMedia.adminREST.DelegateMethod.IDelegateMethodForSession;
 
-import java.util.List;
+public interface IDelegateModelDAOHibernate<T> {
 
-public interface IDelegateModelDAOHibernate {
-
-    void add(Object... objects);
-    void add(Object o);
-    Session getSession();
+    void add(T... t);
+//    void add(T t);
+    void workWithSession(IDelegateMethodForSession delegateMethod);
+    boolean workWithSession(IBooleanDelegateMethodForSession delegateMethod);
 
 }
-*/

@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { cinemasURL } from '../commonConstants';
+import { cinemasURL, mainHostForFiles } from '../commonConstants';
 import { IBack } from '../interfaces/IBack';
 import { IInputMode } from '../interfaces/IInputMode';
 import { AjaxService } from '../service/ajax.service';
+import { FileServiceForCinemasServices } from '../service/file.service';
 import { MessageService } from '../service/message.service';
+import { SeoBlockService } from '../service/seo-block-service.service';
 
 @Component({
   selector: 'app-cinemas',
   templateUrl: './cinemas.component.html',
   // styleUrls: ['./cinemas.component.css']
-  providers: [AjaxService, MessageService]
+  providers: [AjaxService, MessageService, FileServiceForCinemasServices]
 })
 export class CinemasComponent implements IInputMode, IBack {
 
@@ -23,13 +25,32 @@ export class CinemasComponent implements IInputMode, IBack {
   public images: Array<string> = []
   private imageFiles: Array<File> = []
 
-  constructor(private ajax: AjaxService, private messageService: MessageService) {
+  constructor(
+    private ajax: AjaxService,
+    private messageService: MessageService,
+    private fileServiceForCinemasServices: FileServiceForCinemasServices
+  ) {
     if (!this.inputMode) this.getCurrentCinemas()
   }
 
   getCurrentCinemas() {
-    this.ajax.get(`${cinemasURL}/getAll`).subscribe(
-      data => { },
+    this.ajax.get(`${cinemasURL}/getAll?min_id=0`).subscribe(
+      data => {
+        this.infoForCinemasMainPage = []
+        for (const [key, value] of Object.entries(data)) {
+          let movieArr: Array<string> = [
+            value['id'],                                          // 0
+            value['name'],                                        // 1
+            value['description'],                                 // 2
+            value['about_cinema'],                                // 3
+            value['conditions'],                                  // 4
+            `${mainHostForFiles}/${value['path_to_logo_image']}`, // 5
+            // value['path_to_top_banner_image'],                    // 6
+          ]
+          value['seo_block']                                    // 7
+          this.infoForCinemasMainPage.push(movieArr)
+        }
+      },
       error => { }
     )
   }
@@ -42,7 +63,7 @@ export class CinemasComponent implements IInputMode, IBack {
     this.inputMode = false
   }
 
-  back(): void {
+  public back(): void {
     this.closeInpunMode()
   }
 
@@ -72,12 +93,64 @@ export class CinemasComponent implements IInputMode, IBack {
     else this.images[index] = null
   }
 
+  private addNewEntity(
+    nameInput: string,
+    descriptionTextarea: string,
+    aboutCinemaTextarea: string,
+    conditionsTextarea: string,
+    seoResponse: any
+  ): void {
+    this.fileServiceForCinemasServices.processFileAndAddNewEntity(
+      this.imageFiles,
+      this.logoImageFile,
+      nameInput,
+      'logo',
+      this.ajax,
+      cinemasURL,
+      this.topBannerImageFile,
+      'top_banner',
+      this.messageService,
+      {
+        name: nameInput,
+        description: descriptionTextarea,
+        aboutCinema: aboutCinemaTextarea,
+        conditions: conditionsTextarea,
+        seoBlockId: null
+      },
+      seoResponse,
+      () => this.closeInpunMode()
+    )
+  }
+
   public submit(
     nameInput: string,
     descriptionTextarea: string,
     aboutCinemaTextarea: string,
     conditionsTextarea: string
   ) {
+    if (nameInput != '' && this.logoImageFile != null)
+      SeoBlockService.seoBlock.sendSeoBlock(
+        (data: any) => {
+          this.addNewEntity(
+            nameInput,
+            descriptionTextarea,
+            aboutCinemaTextarea,
+            conditionsTextarea,
+            data
+          )
+        },
+        () => {
+          this.addNewEntity(
+            nameInput,
+            descriptionTextarea,
+            aboutCinemaTextarea,
+            conditionsTextarea,
+            null
+          )
+        },
+        this.messageService
+      )
+    else this.messageService.open('/assets/pngwing.com.png', 'Please, write cinema name and other fields with "*"')
   }
 
 }

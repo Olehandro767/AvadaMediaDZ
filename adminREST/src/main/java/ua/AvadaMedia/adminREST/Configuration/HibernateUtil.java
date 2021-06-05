@@ -1,4 +1,3 @@
-/*
 package ua.AvadaMedia.adminREST.Configuration;
 
 import org.hibernate.SessionFactory;
@@ -8,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
 
-//@Configuration
+@Configuration
 public class HibernateUtil {
 
     @Bean
@@ -24,4 +23,3 @@ public class HibernateUtil {
     }
 
 }
-*/

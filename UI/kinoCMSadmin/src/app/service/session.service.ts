@@ -14,7 +14,7 @@ export class SessionService {
   private static applicationIsStarted = false
   private static loginStr: string = 'admin'
   private static passwordStr: string = 'admin'
-  private static mainAppComponent: AppComponent
+  private static mainAppComponent: AppComponent = null as AppComponent
 
   public static getLogin_s(): string {
     return this.loginStr
